@@ -27,6 +27,10 @@ install_packages () {
 	yum groupinstall -y "Development Tools"
 	yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel
 
+	# Virtualenv
+	yum install -y python-pip
+	pip install --upgrade virtualenv
+
 	yum clean all -y
 }
 
@@ -39,7 +43,7 @@ install_python () {
 	echo "Building Python..."
 
 	VERSION=$1
-	OUT_PREFIX="/pythons/$VERSION/"
+	OUT_PREFIX="/python/$VERSION/"
 
 	if [ -f "$OUT_PREFIX/bin/python" ]; then
 	    echo "Python $VERSION already installed"
@@ -58,7 +62,7 @@ install_python () {
 	make install
 
 	ln "$OUT_PREFIX/bin/python3" "$OUT_PREFIX/bin/python"
-	ln "$OUT_PREFIX/bin/python3" "/usr/bin/python$VERSION"
+	ln "$OUT_PREFIX/bin/python3" "/usr/bin/python3"
 
 	echo "Python $VERSION installed"
 }
