@@ -62,7 +62,7 @@ install_python () {
 	make install
 
 	ln "$OUT_PREFIX/bin/python3" "$OUT_PREFIX/bin/python"
-	ln "$OUT_PREFIX/bin/python3" "/usr/bin/python3"
+	ln -sf "$OUT_PREFIX/bin/python3" "/usr/bin/python3"
 
 	echo "Python $VERSION installed"
 }
